@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Siglinpac-core", "Siglinpac-core\Siglinpac-core.csproj", "{AF97B2C0-F377-4202-9C76-E151BDFA83CF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AF97B2C0-F377-4202-9C76-E151BDFA83CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF97B2C0-F377-4202-9C76-E151BDFA83CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF97B2C0-F377-4202-9C76-E151BDFA83CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF97B2C0-F377-4202-9C76-E151BDFA83CF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {607E5CBE-42BF-48D0-937E-16F324392C96}
+	EndGlobalSection
+EndGlobal
