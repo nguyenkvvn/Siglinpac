@@ -9,7 +9,10 @@ using Newtonsoft.Json;
 
 namespace Siglinpac_core
 {
-    public class Siglinpac
+    /// <summary>
+    /// Static tool to fetch stickers
+    /// </summary>
+    public static class Siglinpac
     {
         /// <summary>
         /// Returns a meta object of the sticker pack given from the link
@@ -22,8 +25,8 @@ namespace Siglinpac_core
             SLP_Meta sticker_pack = new SLP_Meta();
 
             //  Start the HAP and load the path to the HTML
-            HtmlAgilityPack.HtmlDocument product_page = new HtmlAgilityPack.HtmlDocument();
-            product_page.Load(html_path);
+            HtmlWeb web = new HtmlWeb(); 
+            HtmlAgilityPack.HtmlDocument product_page = web.Load(html_path);
 
             //  Populate relevant titles
             sticker_pack.Title = product_page.DocumentNode.SelectSingleNode("//p[@class='mdCMN38Item01Ttl']").InnerText;
@@ -41,8 +44,8 @@ namespace Siglinpac_core
         {
             //  Iniitalize HAP to load the HTML content
             /// Create the doc and load it in memory
-            HtmlAgilityPack.HtmlDocument product_page = new HtmlAgilityPack.HtmlDocument();
-            product_page.Load(html_path);
+            HtmlWeb web = new HtmlWeb(); 
+            HtmlAgilityPack.HtmlDocument product_page = web.Load(html_path);
 
             //  Extract all span tags
             ///     Specifically, the ones with a style attribute, which we will use to filter out the unecessary fluff
@@ -67,6 +70,11 @@ namespace Siglinpac_core
 
         }
 
+        /// <summary>
+        /// Download stickers from the given sticker pack meta into the given path
+        /// </summary>
+        /// <param name="sticker_pack"></param>
+        /// <param name="path_to_save_files_in"></param>
         public static void download_stickers(SLP_Meta sticker_pack, string path_to_save_files_in)
         {
             string path_to_sticker_folder = path_to_save_files_in + "\\" + sticker_pack.Author + "_" + sticker_pack.Title;
@@ -90,6 +98,11 @@ namespace Siglinpac_core
                 wc.DownloadFile(str_link, path_to_sticker_folder + "\\image_" + increment + ".png");
                 increment++;
             }
+        }
+
+        public static string get_path_to_stickers(SLP_Meta sticker_pack, string path_to_save_files_in)
+        {
+            return path_to_save_files_in + "\\" + sticker_pack.Author + "_" + sticker_pack.Title;
         }
 
         /// <summary>
