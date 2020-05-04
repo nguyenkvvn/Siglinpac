@@ -33,6 +33,8 @@ namespace Siglinpac_core
             sticker_pack.Author = product_page.DocumentNode.SelectSingleNode("//a[@class='mdCMN38Item01Author']").InnerText;
             sticker_pack.Description = product_page.DocumentNode.SelectSingleNode("//p[@class='mdCMN38Item01Txt']").InnerText;
 
+            sticker_pack.product_link = html_path;
+
             //  Then get the links to the images
             sticker_pack.image_links = get_sticker_image_links(html_path);
 
@@ -47,10 +49,18 @@ namespace Siglinpac_core
             HtmlWeb web = new HtmlWeb(); 
             HtmlAgilityPack.HtmlDocument product_page = web.Load(html_path);
 
-            //  Extract all span tags
-            ///     Specifically, the ones with a style attribute, which we will use to filter out the unecessary fluff
+            //  Place where we store the links
             List<string> spanTags = new List<string>();
 
+            //  Grab the main sticker image
+            string main_img_link = product_page.DocumentNode.SelectSingleNode("//img[@class='FnImage']").GetAttributeValue("src", null);
+            main_img_link = main_img_link.Replace(";compress=true", null);
+            spanTags.Add(main_img_link);
+
+            //  Grab all the sticker pack images
+            ///  Extract all span tags
+            ///     Specifically, the ones with a style attribute, which we will use to filter out the unecessary fluff
+            
             /// example: "background-image:url(https://stickershop.line-scdn.net/stickershop/v1/sticker/297435927/android/sticker.png;compress=true);"
             foreach (HtmlNode link in product_page.DocumentNode.SelectNodes("//span[@style]"))
             {
@@ -127,6 +137,9 @@ namespace Siglinpac_core
             /// The description of the sticker pack
             /// </summary>
             public string Description;
+
+            [JsonProperty]
+            public string product_link;
 
             [JsonProperty]
             /// <summary>
