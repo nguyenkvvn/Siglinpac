@@ -1,4 +1,4 @@
-#Siglinpac
+# Siglinpac 
 Proof-of-concept sticker archiving tool using web traversing libraries
 
 ## How to use
